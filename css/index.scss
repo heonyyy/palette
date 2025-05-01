@@ -5,17 +5,31 @@
     0% {
         opacity: 0;
     }
+
     100% {
         opacity: 1;
     }
 }
+
 @keyframes scrolldown {
     0% {
         top: -20%;
     }
+
     100% {
         top: 120%;
     }
+}
+
+@keyframes cursorshow {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+
 }
 
 a {
@@ -26,9 +40,11 @@ a {
 li {
     list-style: none;
 }
+
 .poppin {
     font-family: "Poppins", sans-serif;
 }
+
 .header {
     width: 100%;
     position: fixed;
@@ -36,7 +52,27 @@ li {
     top: 0;
     left: 0;
     z-index: 9999;
+    transition: background-color 0.4s;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0), black);
+
+    &.active {
+        background-color: #000;
+    }
+
+    .header_bg {
+        position: absolute;
+        width: 100%;
+        top: 9rem;
+        height: 8rem;
+        background: #222;
+        z-index: -1;
+        display: none;
+        opacity: 0;
+        &.active {
+            display: block;
+            opacity: 1;
+        }
+    }
 
     .inner {
         max-width: 164.4rem;
@@ -97,10 +133,16 @@ li {
                     }
 
                     .depth-01 {
-
                         position: absolute;
                         width: 100%;
                         top: 9rem;
+                        display: none;
+                        opacity: 0;
+
+                        &.active {
+                            display: flex;
+                            opacity: 1;
+                        }
 
                         li:hover a {
                             background-color: #7241d5;
@@ -117,7 +159,7 @@ li {
                             color: #fff;
                             font-weight: 500;
                             font-size: 1.6rem;
-                            display: none;
+
                         }
                     }
                 }
@@ -202,6 +244,56 @@ li {
 
 /* header end 🧑🏿👉👌💅🙌*/
 
+.cursor {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background-color: rgba(0, 0, 0, 0);
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.2s ease ease-in-out 0.5s width 0.3s height 0.3s background-color 0.3s;
+    animation: cursorshow 0.9s 1.2s forwards;
+
+    &::before {
+        content: 'Play';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 1.6rem;
+        font-family: "Poppins", sans-serif;
+        opacity: 0;
+        transition: opacity 0.3s;
+        mix-blend-mode: difference;
+        text-align: center;
+    }
+
+    &::after {
+        content: "Let's talk";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 1.6rem;
+        font-family: "Poppins", sans-serif;
+        opacity: 0;
+        transition: opacity 0.3s;
+        mix-blend-mode: difference;
+        text-align: center;
+    }
+
+}
+
+
+
+
+
+
+
 .main {
     position: relative;
     height: 100vh;
@@ -247,6 +339,7 @@ li {
                 justify-content: center;
                 align-items: center;
                 margin-top: 4.8rem;
+
                 a {
                     padding: 2rem 2.4rem;
                     border: 1px solid #fff;
@@ -259,11 +352,13 @@ li {
                     background-color: rgba(255, 255, 255, 0.16);
                     border-radius: 5.5rem;
                     overflow: hidden;
+
                     p {
                         font-size: 2.8rem;
                         line-height: 1.2;
                         color: #fff;
                     }
+
                     img {
                         width: 3.6rem;
                         height: 3.6rem;
@@ -283,18 +378,21 @@ li {
         align-items: center;
         justify-content: center;
         animation: scrollopc 0.9s 1s forwards;
+
         p {
             font-size: 1.5rem;
             color: #fff;
             margin-bottom: 0.5rem;
         }
+
         .line {
             position: relative;
             width: 0.2rem;
             height: 10rem;
             background-color: rgba(255, 255, 255, 0.7);
             overflow: hidden;
-            &::before{
+
+            &::before {
                 content: '';
                 position: absolute;
                 left: 0;
